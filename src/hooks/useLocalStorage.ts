@@ -1,0 +1,18 @@
+import { useEffect, useState } from "react";
+import type { WatchedMovieType } from "../types/movies";
+
+export function useLocalStorage(initialState: any, key: string) {
+  const [value, setValue] = useState<WatchedMovieType[]>(function () {
+    const storedValue = localStorage.getItem(key);
+    return storedValue ? JSON.parse(storedValue) : initialState;
+  });
+
+  useEffect(
+    function () {
+      localStorage.setItem(key, JSON.stringify(value));
+    },
+    [value, key]
+  );
+
+  return [value, setValue];
+}

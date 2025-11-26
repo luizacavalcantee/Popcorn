@@ -1,5 +1,5 @@
 import { useEffect, useState } from "react";
-import { API_KEY } from "../App";
+import { API_KEY } from "../hooks/useMovies";
 import StarRating from "./StarRating";
 import Loader from "./Loader";
 import type { WatchedMovieType } from "../types/movies";
@@ -42,9 +42,9 @@ export default function MovieDetails({
   function handleAdd() {
     const newWatchedMovie = {
       imdbID: selectedId,
-      title,
-      year,
-      poster,
+      Title: title,
+      Year: year,
+      Poster: poster,
       imdbRating: Number(imdbRating),
       runtime: Number(runtime.split(" ").at(0)),
       userRating,
